@@ -1,3 +1,4 @@
+import { url } from "inspector";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -10,8 +11,11 @@ const config: Config = {
     extend: {
       colors: {
         background: "var(--background)",
+        backgroundImage: {
+          'login_ill': "url('./public/login_ill.png')"
+        },
         foreground: "var(--foreground)",
-        orange: {
+        primary: {
           50: '#fef9ee',
           100: '#fdf1d7',
           200: '#fadfae',
