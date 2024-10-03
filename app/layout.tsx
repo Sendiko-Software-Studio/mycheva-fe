@@ -17,10 +17,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins400.className}`}>
         <main className="flex w-screen h-screen">
-          <div className="flex-1 bg-primary-500"/>
+          <div className="lg:flex-1 md:w-0 w-0 bg-primary-500" />
           <div className="flex-1 bg-neutral-100">
             {children}
-        </div>
+          </div>
         </main>
       </body>
     </html>
