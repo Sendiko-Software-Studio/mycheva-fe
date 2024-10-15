@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { poppins400 } from "./theme/fonts";
 import "./globals.css";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "MyCheva",
@@ -15,14 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins400.className}`}>
-        <main className="flex w-screen h-screen">
-          <div className="lg:flex-1 md:w-0 w-0 bg-primary-500" />
-          <div className="flex-1 bg-neutral-100">
-            {children}
-          </div>
-        </main>
-      </body>
+      <body className={`${poppins400.className} min-h-screen`}>{children}</body>
     </html>
   );
 }
