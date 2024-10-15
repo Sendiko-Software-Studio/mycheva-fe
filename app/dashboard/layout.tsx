@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import Navbar from "../components/navbar/DashboardNavbar";
@@ -12,6 +12,7 @@ export default function MainLayout({
   children: React.ReactNode;
 }>) {
   const router = useRouter();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   useEffect(() => {
     const token = Cookies.get("token");
@@ -22,10 +23,10 @@ export default function MainLayout({
 
   return (
     <>
-      <Navbar />
+      <Navbar setIsSidebarOpen={setIsSidebarOpen} isSidebarOpen={isSidebarOpen} />
       <div className="main-d-wrapper">
-        <Sidebar />
-        <main className="sm:ml-64">{children}</main>
+        <Sidebar isSidebarOpen={isSidebarOpen} />
+        <main className={`${isSidebarOpen ? "ml-64" : ""}`}>{children}</main>
       </div>
     </>
   );

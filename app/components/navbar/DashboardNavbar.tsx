@@ -1,12 +1,23 @@
 import Image from "next/image";
 
-export default function DashboardNavbar() {
+interface DashboardNavbarProps {
+  setIsSidebarOpen: (value: boolean) => void;
+  isSidebarOpen: boolean;
+}
+
+export default function DashboardNavbar({ setIsSidebarOpen, isSidebarOpen }: DashboardNavbarProps) {
   return (
     <nav className="sticky top-0 z-50 w-full bg-primary-50 text-neutral-900">
       <div className="py-3.5 lg:py-4 px-3 sm:px-4 md:px-5 lg:px-6 xl:px-7">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start rtl:justify-end lg:gap-2 gap-1">
-            <button type="button" className="inline-flex items-center p-2 text-sm text-neutral-900 rounded-lg hover:bg-primary-100 focus:outline-none focus:ring-2 focus:ring-primary-900">
+            <button
+              onClick={() => {
+                setIsSidebarOpen(!isSidebarOpen);
+              }}
+              type="button"
+              className="inline-flex items-center p-2 text-sm text-neutral-900 rounded-lg hover:bg-primary-100 focus:outline-none focus:ring-2 focus:ring-primary-900"
+            >
               <Image priority src={"/nav-hamburger.svg"} width={0} height={0} sizes="100vw" alt="Open Sidebar" className="lg:h-6 md:h-5 h-4 w-full" />
             </button>
             <a href="/" className="flex ms-2 md:me-24">
