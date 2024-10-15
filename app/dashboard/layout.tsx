@@ -25,7 +25,7 @@ export default function MainLayout({
       <Navbar />
       <div className="main-d-wrapper">
         <Sidebar />
-        <main>{children}</main>
+        <main className="sm:ml-64">{children}</main>
       </div>
     </>
   );
