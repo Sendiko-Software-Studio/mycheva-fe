@@ -32,6 +32,6 @@ body {
   }
 
   .main-d-wrapper {
-    @apply flex flex-row relative;
+    @apply flex flex-row w-full h-full;
   }
 }

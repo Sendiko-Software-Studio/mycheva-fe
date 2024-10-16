@@ -7,7 +7,7 @@ interface DashboardNavbarProps {
 
 export default function DashboardNavbar({ setIsSidebarOpen, isSidebarOpen }: DashboardNavbarProps) {
   return (
-    <nav className="sticky top-0 z-50 w-full bg-primary-50 text-neutral-900">
+    <nav className="fixed top-0 z-50 w-full bg-primary-50 text-neutral-900">
       <div className="py-3.5 lg:py-4 px-3 sm:px-4 md:px-5 lg:px-6 xl:px-7">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start rtl:justify-end lg:gap-2 gap-1">
