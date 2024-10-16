@@ -26,7 +26,7 @@ export default function MainLayout({
       <Navbar setIsSidebarOpen={setIsSidebarOpen} isSidebarOpen={isSidebarOpen} />
       <div className="main-d-wrapper">
         <Sidebar isSidebarOpen={isSidebarOpen} />
-        <main className={`${isSidebarOpen ? "ml-64" : ""}`}>{children}</main>
+        <main className={`${isSidebarOpen ? "ml-64" : ""} p-4 sm:p-6`}>{children}</main>
       </div>
     </>
   );
