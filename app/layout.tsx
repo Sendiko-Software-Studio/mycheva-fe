@@ -5,6 +5,12 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "MyCheva",
   description: "Platform for better communication",
+  icons: {
+    icon: {
+      url: "/cheva-logo.png",
+      type: "image/png",
+    },
+  },
 };
 
 export default function RootLayout({
