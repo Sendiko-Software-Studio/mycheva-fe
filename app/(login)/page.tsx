@@ -2,26 +2,50 @@
 
 import Image from "next/image";
 import { poppins700 } from "../theme/fonts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axiosInstance from "../lib/axios";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 export default function Home() {
-  // const router = useRouter();
+  const router = useRouter();
   const [name, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [loading, setIsloading] = useState(false);
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (token) {
+      router.push("/dashboard");
+    }
+  }, [router]);
 
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(null);
     try {
       setIsloading(!loading);
-      const response = await axiosInstance.post("login", {
-        name: name,
-        password: password,
-      });
-      console.log(response);
+      axiosInstance
+        .post("login", {
+          name: name,
+          password: password,
+        })
+        .then((res) => {
+          if (res.data.status === 200 || res.data.status === 201) {
+            Cookies.set("token", res.data.token);
+            Cookies.set("userId", btoa(res.data.user.id));
+            router.push("/dashboard");
+          } else {
+            setError(res.data.message);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+        .finally(() => {
+          setIsloading(false);
+        });
     } catch (error: any) {
       setError(error.message);
       setIsloading(false);
@@ -32,23 +56,11 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-center items-start gap-4 h-screen lg:px-32 md:px-16 px-8">
       <Image src="/cheva.png" width={163} height={43} alt="logo chevalier" />
-      <h1 className={`${poppins700.className} text-neutral-950 text-4xl`}>
-        Selamat Datang!
-      </h1>
-      <p className="text-neutral-950">
-        Masukkan Username dan Password untuk mengakses akun
-      </p>
+      <h1 className={`${poppins700.className} text-neutral-950 text-4xl`}>Selamat Datang!</h1>
+      <p className="text-neutral-950">Masukkan Username dan Password untuk mengakses akun</p>
 
-      {loading && (
-        <p className="text-neutral-50 bg-primary-500 p-2 rounded-lg w-full">
-          Loading...
-        </p>
-      )}
-      {error && (
-        <p className="text-neutral-50 bg-error p-2 rounded-lg w-full">
-          {error}
-        </p>
-      )}
+      {loading && <p className="text-neutral-50 bg-primary-500 p-2 rounded-lg w-full">Loading...</p>}
+      {error && <p className="text-neutral-50 bg-error p-2 rounded-lg w-full">{error}</p>}
 
       <form onSubmit={handleLogin} method="post" className="w-full">
         <div className="flex flex-col text-neutral-950 w-full">
@@ -75,10 +87,7 @@ export default function Home() {
             onChange={(value) => setPassword(value.target.value)}
           />
         </div>
-        <button
-          type="submit"
-          className="text-neutral-50 bg-primary-500 w-full py-4 rounded-lg hover:bg-primary-700 focus:outline-primary-900"
-        >
+        <button type="submit" className="text-neutral-50 bg-primary-500 w-full py-4 rounded-lg hover:bg-primary-700 focus:outline-primary-900">
           Masuk
         </button>
       </form>
