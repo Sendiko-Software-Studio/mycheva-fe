@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { poppins700 } from "../theme/fonts";
+import { poppins } from "../theme/fonts";
 import { useEffect, useState } from "react";
 import axiosInstance from "../lib/axios";
 import { useRouter } from "next/navigation";
@@ -56,7 +56,7 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-center items-start gap-4 h-screen lg:px-32 md:px-16 px-8">
       <Image src="/cheva.png" width={163} height={43} alt="logo chevalier" />
-      <h1 className={`${poppins700.className} text-neutral-950 text-4xl`}>Selamat Datang!</h1>
+      <h1 className={`${poppins.className} font-bold text-neutral-950 text-4xl`}>Selamat Datang!</h1>
       <p className="text-neutral-950">Masukkan Username dan Password untuk mengakses akun</p>
 
       {loading && <p className="text-neutral-50 bg-primary-500 p-2 rounded-lg w-full">Loading...</p>}
