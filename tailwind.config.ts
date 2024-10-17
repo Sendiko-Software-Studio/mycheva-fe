@@ -45,6 +45,9 @@ const config: Config = {
           900: '#212121',
         }
       },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+      },
     },
   },
   plugins: [],

@@ -4,7 +4,9 @@ interface DashboardSidebarProps {
   isSidebarOpen: boolean;
 }
 
-export default function DashboardSidebar({ isSidebarOpen }: DashboardSidebarProps) {
+export default function DashboardSidebar({
+  isSidebarOpen,
+}: DashboardSidebarProps) {
   return (
     <>
       <aside
@@ -15,33 +17,91 @@ export default function DashboardSidebar({ isSidebarOpen }: DashboardSidebarProp
         <div className="h-full overflow-y-auto bg-primary-500">
           <ul className="space-y-2 font-medium">
             <li>
-              <a href="#" className="flex items-center p-4 text-primary-50 hover:bg-primary-50/15 group">
-                <Image src={"/icon-co-present.svg"} alt="Pertemuan" width={0} height={0} sizes="100vw" className="w-5 h-5 text-primary-50 transition duration-75" />
+              <a
+                href="#"
+                className="flex items-center p-4 text-primary-50 hover:bg-primary-50/15 group"
+              >
+                <Image
+                  src={"/icon-co-present.svg"}
+                  alt="Pertemuan"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="w-5 h-5 text-primary-50 transition duration-75"
+                />
                 <span className="ms-3 lg:text-base text-sm">Pertemuan</span>
               </a>
             </li>
             <li>
-              <a href="#" className="flex items-center p-4 text-primary-50 hover:bg-primary-50/15 group">
-                <Image src={"/icon-newspaper.svg"} alt="Pengumuman" width={0} height={0} sizes="100vw" className="flex-shrink-0 w-5 h-5 text-primary-50 transition duration-75" />
-                <span className="flex-1 ms-3 whitespace-nowrap lg:text-base text-sm">Pengumuman</span>
+              <a
+                href="/dashboard/announcement"
+                className="flex items-center p-4 text-primary-50 hover:bg-primary-50/15 group"
+              >
+                <Image
+                  src={"/icon-newspaper.svg"}
+                  alt="Pengumuman"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="flex-shrink-0 w-5 h-5 text-primary-50 transition duration-75"
+                />
+                <span className="flex-1 ms-3 whitespace-nowrap lg:text-base text-sm">
+                  Pengumuman
+                </span>
               </a>
             </li>
             <li>
-              <a href="#" className="flex items-center p-4 text-primary-50 hover:bg-primary-50/15 group">
-                <Image src={"/icon-timeline.svg"} alt="Timeline" width={0} height={0} sizes="100vw" className="flex-shrink-0 w-5 h-5 text-primary-50 transition duration-75" />
-                <span className="flex-1 ms-3 whitespace-nowrap lg:text-base text-sm">Roadmap</span>
+              <a
+                href="#"
+                className="flex items-center p-4 text-primary-50 hover:bg-primary-50/15 group"
+              >
+                <Image
+                  src={"/icon-timeline.svg"}
+                  alt="Timeline"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="flex-shrink-0 w-5 h-5 text-primary-50 transition duration-75"
+                />
+                <span className="flex-1 ms-3 whitespace-nowrap lg:text-base text-sm">
+                  Roadmap
+                </span>
               </a>
             </li>
             <li>
-              <a href="#" className="flex items-center p-4 text-primary-50 hover:bg-primary-50/15 group">
-                <Image src={"/icon-message.svg"} alt="Message" width={0} height={0} sizes="100vw" className="flex-shrink-0 w-5 h-5 text-primary-50 transition duration-75" />
-                <span className="flex-1 ms-3 whitespace-nowrap lg:text-base text-sm">Forum Diskusi</span>
+              <a
+                href="#"
+                className="flex items-center p-4 text-primary-50 hover:bg-primary-50/15 group"
+              >
+                <Image
+                  src={"/icon-message.svg"}
+                  alt="Message"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="flex-shrink-0 w-5 h-5 text-primary-50 transition duration-75"
+                />
+                <span className="flex-1 ms-3 whitespace-nowrap lg:text-base text-sm">
+                  Forum Diskusi
+                </span>
               </a>
             </li>
             <li>
-              <a href="/dashboard/profile" className="flex items-center p-4 text-primary-50 hover:bg-primary-50/15 group">
-                <Image src={"/icon-account-p.svg"} alt="Profile" width={0} height={0} sizes="100vw" className="flex-shrink-0 w-5 h-5 text-primary-50 transition duration-75" />
-                <span className="flex-1 ms-3 whitespace-nowrap lg:text-base text-sm">Profil</span>
+              <a
+                href="/dashboard/profile"
+                className="flex items-center p-4 text-primary-50 hover:bg-primary-50/15 group"
+              >
+                <Image
+                  src={"/icon-account-p.svg"}
+                  alt="Profile"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="flex-shrink-0 w-5 h-5 text-primary-50 transition duration-75"
+                />
+                <span className="flex-1 ms-3 whitespace-nowrap lg:text-base text-sm">
+                  Profil
+                </span>
               </a>
             </li>
           </ul>

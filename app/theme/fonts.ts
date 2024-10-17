@@ -1,21 +1,7 @@
 import { Poppins } from 'next/font/google';
 
-export const poppins400 = Poppins({
+export const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['400']
-})
-
-export const poppins500 = Poppins({
-  subsets: ['latin'],
-  weight: ['500']
-})
-
-export const poppins600 = Poppins({
-  subsets: ['latin'],
-  weight: ['600']
-})
-
-export const poppins700 = Poppins({
-  subsets: ['latin'],
-  weight: ['700']
-})
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'], 
+  display: 'swap', 
+});
