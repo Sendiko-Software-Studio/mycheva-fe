@@ -18,7 +18,7 @@ export default function DashboardSidebar({
           <ul className="space-y-2 font-medium">
             <li>
               <a
-                href="#"
+                href="/dashboard/meetings"
                 className="flex items-center p-4 text-primary-50 hover:bg-primary-50/15 group"
               >
                 <Image
