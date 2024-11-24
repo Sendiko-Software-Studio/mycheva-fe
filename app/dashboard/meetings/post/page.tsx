@@ -2,9 +2,11 @@
 import {useEffect, useState} from "react";
 import Cookies from "js-cookie";
 import axiosInstance from "@/app/lib/axios";
-import {log} from "node:util";
+import {useRouter} from "next/navigation";
 
 export default function PostEvent() {
+  
+  const router = useRouter();
   
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -44,7 +46,7 @@ export default function PostEvent() {
         setDivisions(res.data.divisions);
       }
     }).catch((error: any) =>
-        console.log(error.message)
+        setError(error.message)
       )
       .finally(() =>
         setLoading(false)
@@ -68,8 +70,6 @@ export default function PostEvent() {
     try {
       setLoading(true);
       const token = Cookies.get('token');
-      const userId = Cookies.get('userId');
-      let decodedId = '';
       
       axiosInstance.post(
         "event",
@@ -88,12 +88,12 @@ export default function PostEvent() {
           }
         }
       ).then((res) => {
-        console.log(res);
-        setLoading(false);
+        if (res.status == 201) {
+          router.push("/dashboard/meetings");
+        }
       })
-      
     } catch (error: any) {
-      console.log(error.message)
+      setError(error.message)
       setLoading(false)
     } finally {
       setLoading(false);
@@ -102,6 +102,7 @@ export default function PostEvent() {
   
   return (
     <div className="flex flex-col lg:mx-24 md:mx-16 sm:mx-0 gap-8">
+      {error ?? <p className="bg-error p-4 m-4 rounded-lg text-white">{error}</p>}
       <h1 className="font-bold text-4xl">Tambahkan Jadwal Baru</h1>
       <form
         method="post"
