@@ -2,11 +2,15 @@
 import Calendar from "@/app/components/calendar/calendar";
 import MeetingCard from "@/app/components/calendar/event";
 import CalendarFAB from "@/app/components/calendar/fab";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Meetings() {
 
+  const router = useRouter();
+  const path = usePathname();
+
   const handleNewEvent = () => {
-    console.log()
+    router.push(path + '/post')
   }
 
 	return (
