@@ -67,7 +67,9 @@ export default function Profile() {
 
             <div className="h-full flex flex-col items-center justify-end xl:gap-36 lg:gap-[9.3rem] md:gap-44 sm:gap-52 gap-64">
               <div className="flex flex-col justify-center items-center">
+                {/* @ts-ignore */}
                 <h1 className="font-bold text-neutral-900 lg:text-4xl md:text-3xl sm:text-2xl text-xl">{userData?.name}</h1>
+                {/* @ts-ignore */}
                 <h4 className="text-neutral-500 lg:text-base md:text-sm text-xs">{userData?.UserDatum.Division.name}</h4>
               </div>
 

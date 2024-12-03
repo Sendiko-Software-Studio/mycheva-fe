@@ -8,7 +8,7 @@ interface FABProps {
 const CalendarFAB: React.FC<FABProps> = ({ onClick }) => {
   return (
     <>
-      <button onClick={onClick} className="p-4 rounded-2xl drop-shadow-lg hover:bg-orange-600 active:scale-95 transition-all duration-200 bg-primary-500 w-fit text-white flex flex-row justify-center items-center gap-2 w-full">
+      <button onClick={onClick} className="p-4 rounded-2xl drop-shadow-lg hover:bg-orange-600 active:scale-95 transition-all duration-200 bg-primary-500 text-white flex flex-row justify-center items-center gap-2 w-full">
         <AddIcon /> 
         <p className="font-bold text-lg">Buat Pertemuan</p>
       </button>
