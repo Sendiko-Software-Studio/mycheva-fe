@@ -52,7 +52,7 @@ export default function DashboardSidebar({
             </li>
             <li>
               <a
-                href="#"
+                href="/dashboard/roadmap"
                 className="flex items-center p-4 text-primary-50 hover:bg-primary-50/15 group"
               >
                 <Image
