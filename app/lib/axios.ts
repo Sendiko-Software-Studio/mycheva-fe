@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-   baseURL: "http://localhost:3000/",
-//  baseURL: "https://flexible-puma-knowing.ngrok-free.app/",
+  // baseURL: "http://localhost:3000/",
+  baseURL: "https://my-cheva-api.kakashispiritnews.my.id/",
   headers: {
     Accept: "application/json",
   },
