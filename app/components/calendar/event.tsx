@@ -40,7 +40,7 @@ export default function MeetingCard({
 
   return (
     <div className="flex flex-row p-4 h-fit w-full rounded-xl gap-4 justify-start items-center">
-      <p className="text-lg font-semibold text-gray-500">{monthDay}</p>
+      <p className="text-lg font-semibold text-gray-500 flex-1">{monthDay}</p>
       <div className="flex flex-col w-full">
         <div className="flex flex-col bg-primary-300 p-4 rounded-xl w-full">
           <div className="flex flex-row justify-between gap-8 w-full">
