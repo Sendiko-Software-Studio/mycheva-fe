@@ -1,5 +1,7 @@
-import DashboardHome from "./(home)/page";
-
-export default function Dashboard() {
-  return <DashboardHome />;
+export default function DashboardHome() {
+  return (
+    <div className="h-screen">
+      <h1>Welcome to dashboard</h1>
+    </div>
+  );
 }
