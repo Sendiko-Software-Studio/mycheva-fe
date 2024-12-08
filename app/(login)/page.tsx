@@ -33,13 +33,13 @@ export default function Home() {
         })
         .then((res) => {
           if (res.data.status === 200 || res.data.status === 201) {
-            if (res.data.user.roleId == 1) {
-              Cookies.set("token", res.data.token);
-              Cookies.set("userId", btoa(res.data.user.id));
-              router.push("/dashboard");
+            if (res.data.user.roleId == 2) {
+              setError(res.data.message);
             }
           } else {
-            setError(res.data.message);
+            Cookies.set("token", res.data.token);
+            Cookies.set("userId", btoa(res.data.user.id));
+            router.push("/dashboard");
           }
         })
         .catch((error) => {
