@@ -1,17 +1,16 @@
 "use client";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import axiosInstance from "@/app/lib/axios";
-import {useRouter} from "next/navigation";
+import axiosInstance from "../../../lib/axios";
+import { useRouter } from "next/navigation";
 
 export default function PostEvent() {
-  
   const router = useRouter();
-  
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [divisions, setDivisions] = useState<any[]>([]);
-  
+
   const [formData, setFormData] = useState({
     title: "",
     location: "",
@@ -19,9 +18,9 @@ export default function PostEvent() {
     time: "",
     description: "",
     meetingType: "online",
-    division: ""
+    division: "",
   });
-  
+
   const [formErrors, setFormErrors] = useState({
     title: false,
     location: false,
@@ -30,31 +29,29 @@ export default function PostEvent() {
     description: false,
     meetingType: false,
   });
-  
+
   useEffect(() => {
-    const token = Cookies.get("token")
+    const token = Cookies.get("token");
     setLoading(true);
-    axiosInstance.get(
-      'division',
-      {
+    axiosInstance
+      .get("division", {
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        if (res.status == 200) {
+          setDivisions(res.data.divisions);
         }
-      }
-    ).then((res) => {
-      if (res.status == 200) {
-        setDivisions(res.data.divisions);
-      }
-    }).catch((error: any) =>
-        setError(error.message)
-      )
-      .finally(() =>
-        setLoading(false)
-      )
-  }, [])
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const {name, value} = e.target;
+      })
+      .catch((error: any) => setError(error.message))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -64,52 +61,56 @@ export default function PostEvent() {
       [name]: false,
     }));
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const token = Cookies.get('token');
-      
-      axiosInstance.post(
-        "event",
-        {
-          "name": formData.title,
-          "desc": formData.description,
-          "type": formData.meetingType,
-          "details": formData.location,
-          "date": formData.date,
-          "time": formData.time,
-          "divisionId": formData.division,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
+      const token = Cookies.get("token");
+
+      axiosInstance
+        .post(
+          "event",
+          {
+            name: formData.title,
+            desc: formData.description,
+            type: formData.meetingType,
+            details: formData.location,
+            date: formData.date,
+            time: formData.time,
+            divisionId: formData.division,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        )
+        .then((res) => {
+          if (res.status == 201) {
+            router.push("/dashboard/meetings");
           }
-        }
-      ).then((res) => {
-        if (res.status == 201) {
-          router.push("/dashboard/meetings");
-        }
-      })
+        });
     } catch (error: any) {
-      setError(error.message)
-      setLoading(false)
+      setError(error.message);
+      setLoading(false);
     } finally {
       setLoading(false);
     }
   };
-  
+
   return (
-    <div className="flex flex-col lg:mx-24 md:mx-16 sm:mx-0 gap-8">
-      {error ?? <p className="bg-error p-4 m-4 rounded-lg text-white">{error}</p>}
+    <div className="flex flex-col lg:mx-24 mx-2 sm:mx-0 gap-8">
+      {error ?? (
+        <p className="bg-error p-4 m-4 rounded-lg text-white">{error}</p>
+      )}
       <h1 className="font-bold text-4xl">Tambahkan Jadwal Baru</h1>
       <form
         method="post"
         className="flex flex-col gap-8"
         onSubmit={handleSubmit}
       >
-        <div className="flex flex-row gap-16">
+        <div className="flex flex-col lg:flex-row sm:flex-col gap-16">
           <div className="flex flex-col w-full">
             <h1 className="font-semibold">Judul</h1>
             <input
@@ -135,8 +136,8 @@ export default function PostEvent() {
             />
           </div>
         </div>
-        
-        <div className="flex flex-row gap-16">
+
+        <div className="flex flex-col lg:flex-row sm:flex-col gap-16">
           <div className="flex flex-col w-full">
             <h1 className="font-semibold">Tanggal</h1>
             <input
@@ -160,8 +161,8 @@ export default function PostEvent() {
             />
           </div>
         </div>
-        
-        <div className="flex flex-row gap-16">
+
+        <div className="flex flex-col lg:flex-row sm:flex-col gap-16">
           <div className="flex flex-col w-full">
             <h1 className="font-semibold">Deskripsi</h1>
             <input
@@ -190,8 +191,8 @@ export default function PostEvent() {
             </select>
           </div>
         </div>
-        
-        <div className="flex flex-col w-full">
+
+        <div className="flex flex-col lg:flex-row sm:flex-col w-full">
           <h1 className="font-semibold">Divisi</h1>
           <select
             name="division"
@@ -209,7 +210,7 @@ export default function PostEvent() {
             ))}
           </select>
         </div>
-        
+
         <button
           type="button"
           className={`text-lg py-2 px-4 shadow-md w-full rounded ${
@@ -224,5 +225,5 @@ export default function PostEvent() {
         </button>
       </form>
     </div>
-  )
+  );
 }

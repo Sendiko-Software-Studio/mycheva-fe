@@ -42,7 +42,7 @@ export default function Meetings() {
   };
 
   return (
-    <div className="flex flex-row w-full">
+    <div className="flex flex-col lg:flex-row sm:flex-col w-full">
       <div className="flex flex-col gap-2">
         <CalendarFAB onClick={handleNewEvent} />
         <Calendar />
