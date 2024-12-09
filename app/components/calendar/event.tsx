@@ -4,17 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-export default function MeetingCard({
-  title,
-  time,
-  date,
-  id,
-}: {
-  title: string;
-  time: string;
-  date: string;
-  id: string;
-}) {
+export default function MeetingCard({ title, time, date, id }: { title: string; time: string; date: string; id: string }) {
   const router = useRouter();
   const [isExpanded, setExpanded] = useState(false);
 
@@ -30,12 +20,9 @@ export default function MeetingCard({
 
   const [year, month, day] = datePart.split("-");
 
-  const shortMonth = new Date(Number(year), parseInt(month) - 1).toLocaleString(
-    "en-US",
-    {
-      month: "short",
-    },
-  );
+  const shortMonth = new Date(Number(year), parseInt(month) - 1).toLocaleString("en-US", {
+    month: "short",
+  });
   const monthDay = `${shortMonth} ${day}`;
 
   return (
@@ -54,11 +41,13 @@ export default function MeetingCard({
             </button>
           </div>
           {isExpanded && (
-            <Link
-              href={`attendance/${id}`}
-              className="mt-2 text-sm rounded-xl p-2 bg-transparent border-2 border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white"
-            >
+            <Link href={`attendance/${id}`} className="mt-2 text-sm rounded-xl p-2 bg-transparent border-2 border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white">
               Buat Kehadiran
+            </Link>
+          )}
+          {isExpanded && (
+            <Link href={`attendance/${id}/detail`} className="mt-2 text-sm rounded-xl p-2 bg-transparent border-2 border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white">
+              Detail Kehadiran
             </Link>
           )}
         </div>
