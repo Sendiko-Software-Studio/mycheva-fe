@@ -7,7 +7,7 @@ const nextConfig = {
                 hostname: 'external-content.duckduckgo.com'
             }
         ],
-        domains: ['cdn-icons-png.flaticon.com'], // Add the domain of the external image
+        domains: ['cdn-icons-png.flaticon.com', 'mycheva-fe-three.vercel.app'], // Add the domain of the external image
     }
 };
 
